@@ -7,12 +7,13 @@ import './modify.css';
 
 
 class App extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
           xLength: 700,
-          yLength: 20
+          yLength: 20,
+          test:{},
+          transition: `all .01s ease-in .01s`
         };
     };
 
@@ -21,9 +22,17 @@ class App extends Component {
         return item.key === nextProps.ShowInfo.key
       });
       if(choise.length>0) {
-        this.setState({xLength:choise[0].xLength,yLength:choise[0].yLength})
+        this.setState({
+          xLength:choise[0].xLength,
+          yLength:choise[0].yLength,
+          test: {transform: `translateX(${choise[0]-90}px) translateY(${choise[0]-25}px)`,transition: this.state.transition},
+        })
       }else {
-        this.setState({xLength:700,yLength:20})
+        this.setState({
+          xLength:700,
+          yLength:20,
+          test: {transform: `translateX(${610}px) translateY(${-5}px)`,transition: this.state.transition},
+        })
       }
     }
 
@@ -48,12 +57,16 @@ class App extends Component {
   }
 
   handleDrag(e,a) {
-    this.setState({xLength:a.x,yLength:a.y})
+    this.setState({
+      xLength:a.x,
+      yLength:a.y,
+      test: {transform: `translateX(${a.x-90}px) translateY(${a.y-25}px)`,transition: this.state.transition},
+    })
   }
 
   setXlength(e) {
     const { value: inputValue } = e.target;
-    if(inputValue <= 800 && inputValue >= 0) {
+    if(inputValue <= 800 && inputValue >= 90) {
       this.setState({xLength:Number(inputValue)})
     }
   }
@@ -71,16 +84,16 @@ class App extends Component {
           <div style={this.props.style}>
             <div className='box-base'>
                 <Draggable
-                  bounds={{left: 0, top: 0, right: 800, bottom: 220}}
+                  bounds={{left: 90, top: 0, right: 800, bottom: 220}}
                   position={{x:this.state.xLength,y:this.state.yLength}}
                   onDrag={this.handleDrag.bind(this)}
                 >
                   <div className='box-move'>
-                    <span className='drag-handler'>
-                      ${this.props.ShowInfo.amount}
-                    </span>
                   </div>
                 </Draggable>
+                <div className='drag-handler' style={{...this.state.test}}>
+                  ${this.props.ShowInfo.amount}
+                </div>
             </div>
             <div className='coordinate'>
               <label style={{marginRight:5}}>
