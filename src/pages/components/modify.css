@@ -1,0 +1,35 @@
+.box-move {
+    width: 100px;
+    height: 30px;
+    margin-right: 20px;
+    margin-top: 20px;
+    float: right;
+    border: 1px solid black;
+    box-sizing: border-box;
+  }
+
+  .box-base {
+    width: 900px;
+    height: 250px;
+    margin: auto;
+    border: 1px dashed black;
+    box-sizing: border-box;
+  }
+  
+  .drag-handler {
+    height: 20px;
+    width: 70px;
+    cursor: move;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px dashed blue;
+    box-sizing: border-box;
+  }
+
+  .coordinate {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+  }
