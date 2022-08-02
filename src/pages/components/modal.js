@@ -17,7 +17,8 @@ class App extends Component {
     };
 
     componentDidUpdate() {
-        this.form.current.setFieldsValue(this.props.ShowInfo)
+        // eslint-disable-next-line no-unused-expressions
+        this.form.current?.setFieldsValue(this.props.ShowInfo)
     console.log(this.props.ShowInfo);
     // console.log(this.props.Data);
     }

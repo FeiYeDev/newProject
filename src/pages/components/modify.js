@@ -11,8 +11,8 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          xLength: 15,
-          yLength: 5
+          xLength: 700,
+          yLength: 20
         };
     };
 
@@ -23,20 +23,20 @@ class App extends Component {
       if(choise.length>0) {
         this.setState({xLength:choise[0].xLength,yLength:choise[0].yLength})
       }else {
-        this.setState({xLength:15,yLength:5})
+        this.setState({xLength:700,yLength:20})
       }
     }
 
 
   showMsg() {
     this.props.show(false);
-    this.setState({xLength:15,yLength:5})
+    this.setState({xLength:700,yLength:20})
   }
 
   setMsg() {
     this.props.show(false);
-    this.setState({xLength:15})
-    this.setState({yLength:5})
+    this.setState({xLength:700})
+    this.setState({yLength:20})
     const index = this.props.CoordinateMsg.findIndex((item) => {return item.key === this.props.ShowInfo.key});
     if(index === -1) {
       this.props.coordinateMsg([...this.props.CoordinateMsg,{key:this.props.ShowInfo.key,...this.state}])
@@ -53,14 +53,14 @@ class App extends Component {
 
   setXlength(e) {
     const { value: inputValue } = e.target;
-    if(inputValue <= 30 && inputValue >= 0) {
+    if(inputValue <= 800 && inputValue >= 0) {
       this.setState({xLength:Number(inputValue)})
     }
   }
 
   setYlength(e) {
     const { value: inputValue } = e.target;
-    if(inputValue <= 10 && inputValue >= 0) {
+    if(inputValue <= 220 && inputValue >= 0) {
       this.setState({yLength:Number(inputValue)})
     }
   }
@@ -70,17 +70,17 @@ class App extends Component {
         return (
           <div style={this.props.style}>
             <div className='box-base'>
-              <div style={this.props.style} className='box-move'>
                 <Draggable
-                  bounds={{left: 0, top: 0, right: 30, bottom: 10}}
+                  bounds={{left: 0, top: 0, right: 800, bottom: 220}}
                   position={{x:this.state.xLength,y:this.state.yLength}}
                   onDrag={this.handleDrag.bind(this)}
                 >
-                  <p className='drag-handler'>
+                  <div className='box-move'>
+                    <span className='drag-handler'>
                       ${this.props.ShowInfo.amount}
-                  </p>
+                    </span>
+                  </div>
                 </Draggable>
-              </div>
             </div>
             <div className='coordinate'>
               <label style={{marginRight:5}}>

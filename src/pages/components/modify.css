@@ -1,14 +1,16 @@
 .box-move {
+    cursor: move;
     width: 100px;
     height: 30px;
-    margin-right: 20px;
-    margin-top: 20px;
-    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: 1px solid black;
     box-sizing: border-box;
   }
 
   .box-base {
+    background-color: orange;
     width: 900px;
     height: 250px;
     margin: auto;
@@ -19,7 +21,6 @@
   .drag-handler {
     height: 20px;
     width: 70px;
-    cursor: move;
     display: flex;
     justify-content: center;
     align-items: center;
